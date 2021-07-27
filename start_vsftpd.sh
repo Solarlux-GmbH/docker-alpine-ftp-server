@@ -38,15 +38,6 @@ for i in $USERS ; do
   unset NAME PASS FOLDER UID
 done
 
-
-if [ -z "$MIN_PORT" ]; then
-  MIN_PORT=21000
-fi
-
-if [ -z "$MAX_PORT" ]; then
-  MAX_PORT=21010
-fi
-
 if [ ! -z "$ADDRESS" ]; then
   ADDR_OPT="-opasv_address=$ADDRESS"
 fi
@@ -55,6 +46,6 @@ fi
 if [ ! -z "$1" ]; then
   exec "$@"
 else
-  exec /usr/sbin/vsftpd -opasv_min_port=$MIN_PORT -opasv_max_port=$MAX_PORT $ADDR_OPT /etc/vsftpd/vsftpd.conf
+  exec /usr/sbin/vsftpd $ADDR_OPT /etc/vsftpd/vsftpd.conf
 fi
 
